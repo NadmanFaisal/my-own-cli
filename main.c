@@ -7,6 +7,7 @@ int main(int argc, char **argv) {
     InputBuffer *buffer = create_buffer();
     printf("Write an input: \n");
     read_buffer(buffer);
+    print_buffer(buffer);
 
     free_buffer(buffer);
     return 0;
