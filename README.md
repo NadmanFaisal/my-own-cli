@@ -31,3 +31,11 @@ docker rmi -f test/helloworld:latest
 To run the program locally:
 
 gcc -IHeaders main.c src/*.c -o exec/main && ./exec/main
+
+Developers flow:
+
+- Add the type of command (StatementType enum) in Statement.h (Also remember to add comment)
+- Return the type of statement in Statement.c (execute_statement method)
+- Add the case block for the type of command in main.c
+- Add the method decleration in BashCommand.h
+- Implement the method in BashCommand.c

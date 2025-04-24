@@ -10,13 +10,17 @@
  * Enum to represent different types of supported statements/commands.
  * - LIST_STATEMENT: Represents the 'ls' command, used to list directory contents.
  * - UNRECOGNISED_COMMAND: Represents any command that is not recognized by the parser.
- * - CHANGE_DIR_STATEMENT: Represents the 'cd' command, used to change directory
+ * - CHANGE_DIR_STATEMENT: Represents the 'cd' command, used to change directory. 
+ * - MAKE_DIR_STATEMENT: Represends the 'mkdir' command used to make a directory. 
+ * - TOUCH_FILE_STATEMENT: Represents the 'touch' command used to create a file
  * - EXIT_STATEMENT: Represends the 'exit' command used to exit the bash
  */
 typedef enum {
     LIST_STATEMENT,
     UNRECOGNISED_COMMAND,
     CHANGE_DIR_STATEMENT,
+    MAKE_DIR_STATEMENT,
+    TOUCH_FILE_STATEMENT,
     EXIT_STATEMENT
 } StatementType;
 

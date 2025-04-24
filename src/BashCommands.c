@@ -1,5 +1,3 @@
-#include <string.h>
-
 #include "BashCommands.h"
 
 DIR *verify_path(char *path, PathConfirmation *status) {
@@ -67,6 +65,40 @@ void change_dir(InputBuffer *buffer) {
     }
 
     chdir(path);
+    char s[100];
+    printf("%s\n", getcwd(s, 100)); 
     closedir(dir);
     free(status);
+}
+
+void make_dir(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+    
+    char *command = strtok(string, delimiter);
+    char *folder_name = strtok(NULL, delimiter);
+
+    if (folder_name == NULL) {
+        printf("Error: No file name provided for 'mkdir' command.\n");
+        return;
+    }
+
+    mkdir(folder_name, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+}
+
+void touch_file(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+    
+    char *command = strtok(string, delimiter);
+    char *file_name = strtok(NULL, delimiter);
+
+    int fd = open(file_name, O_CREAT | O_WRONLY, 0644);
+    if (fd == -1) {
+        perror("touch failed");
+        return;
+    }
+    close(fd);
 }
