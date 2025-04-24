@@ -15,9 +15,10 @@ int main(int argc, char **argv) {
         
         switch (execute_statement(buffer)) {
         case LIST_STATEMENT:
-            list_dir();
+            list_dir(buffer);
             break;
         case UNRECOGNISED_COMMAND:
+            printf("Unrecognised command.\n");
             exit(EXIT_FAILURE);
         default:
             break;
