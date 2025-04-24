@@ -9,8 +9,9 @@
 int main(int argc, char **argv) {
     InputBuffer *buffer = create_buffer();
     bool is_running = true;
+    printf("Write an input: \n");
+
     while(is_running) {
-        printf("Write an input: \n");
         read_buffer(buffer);
         
         switch (execute_statement(buffer)) {
@@ -19,6 +20,9 @@ int main(int argc, char **argv) {
             break;
         case CHANGE_DIR_STATEMENT:
             change_dir(buffer);
+            break;
+        case MAKE_DIR_STATEMENT:
+            make_dir(buffer);
             break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");

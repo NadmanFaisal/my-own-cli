@@ -1,4 +1,6 @@
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "BashCommands.h"
 
@@ -67,6 +69,25 @@ void change_dir(InputBuffer *buffer) {
     }
 
     chdir(path);
+    char s[100];
+    printf("%s\n", getcwd(s, 100)); 
     closedir(dir);
     free(status);
+}
+
+void make_dir(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+    
+    char *command = strtok(string, delimiter);
+    char *folder_name = strtok(NULL, delimiter);
+    printf("Folder path: %s\n", folder_name);
+
+    if (folder_name == NULL) {
+        printf("Error: No file name provided for 'mkdir' command.\n");
+        return;
+    }
+
+    mkdir(folder_name, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 }

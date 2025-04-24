@@ -19,6 +19,8 @@ StatementType execute_statement(InputBuffer *buffer) {
         return CHANGE_DIR_STATEMENT;
     } else if (strcmp(command, "exit") == 0) {
         return EXIT_STATEMENT;
+    } else if(strcmp(command, "mkdir") == 0) {
+        return MAKE_DIR_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
     }
