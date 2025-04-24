@@ -27,3 +27,7 @@ docker rmi test/helloworld:latest
 To delete docker forcefully:-
 
 docker rmi -f test/helloworld:latest
+
+To run the program locally:
+
+gcc -IHeaders main.c src/*.c -o exec/main && ./exec/main
