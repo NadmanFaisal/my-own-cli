@@ -18,3 +18,5 @@ jobs:
       run: docker build -t test/helloworld:latest .
     - name: Run the docker image
       run: docker run --rm test/helloworld:latest
+    - name: Run the docker with an input
+      run: echo "ls"
