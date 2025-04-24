@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <unistd.h>
 
 #include "InputBuffer.h"
 
@@ -26,7 +27,7 @@ typedef enum {
  *               was successfully opened, or PATH_UNRECOGNISED if it could not be opened.
  * @return       A pointer to the opened DIR structure, or NULL if opening failed.
  */
-DIR *open_path(char *path, PathConfirmation *status);
+DIR *verify_path(char *path, PathConfirmation *status);
 
 /**
  * Lists the contents of a directory based on the input buffer.
@@ -36,5 +37,7 @@ DIR *open_path(char *path, PathConfirmation *status);
  * @param buffer Pointer to the InputBuffer containing the command and optional path.
  */
 void list_dir(InputBuffer *buffer);
+
+void change_dir(InputBuffer *buffer);
 
 #endif

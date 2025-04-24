@@ -2,7 +2,7 @@
 
 #include "BashCommands.h"
 
-DIR *open_path(char *path, PathConfirmation *status) {
+DIR *verify_path(char *path, PathConfirmation *status) {
     DIR *dir;
 
     if(path == NULL) {
@@ -29,7 +29,7 @@ void list_dir(InputBuffer *buffer) {
     char *path = strtok(NULL, delimiter);
     
     PathConfirmation *status = (PathConfirmation *)malloc(sizeof(PathConfirmation));
-    DIR *dir = open_path(path, status);
+    DIR *dir = verify_path(path, status);
 
     if(*status == PATH_UNRECOGNISED) {
         printf("Error: Path not recognizes or directory '%s' not found.\n", path);
@@ -41,6 +41,32 @@ void list_dir(InputBuffer *buffer) {
         printf("%s  ", dp->d_name);
     }
     printf("\n");
+    closedir(dir);
+    free(status);
+}
+
+void change_dir(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+    
+    char *command = strtok(string, delimiter);
+    char *path = strtok(NULL, delimiter);
+
+    if (path == NULL) {
+        printf("Error: No path provided for 'cd' command.\n");
+        return;
+    }
+    
+    PathConfirmation *status = (PathConfirmation *)malloc(sizeof(PathConfirmation));
+    DIR *dir = verify_path(path, status);
+
+    if(*status == PATH_UNRECOGNISED) {
+        printf("Error: Path not recognizes or directory '%s' not found.\n", path);
+        exit(EXIT_FAILURE);
+    }
+
+    chdir(path);
     closedir(dir);
     free(status);
 }
