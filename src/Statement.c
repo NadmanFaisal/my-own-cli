@@ -12,12 +12,8 @@ StatementType execute_statement(InputBuffer *buffer) {
     }
 
     char *extra_arg = strtok(NULL, delimiter);
-    // if (extra_arg != NULL) {
-    //     return UNRECOGNISED_COMMAND;
-    // }
 
     if (strcmp(command, "ls") == 0) {
-        printf("List command\n");
         return LIST_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
