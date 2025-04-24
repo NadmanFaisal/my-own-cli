@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #include "InputBuffer.h"
 
@@ -62,4 +66,17 @@ void change_dir(InputBuffer *buffer);
  */
 void make_dir(InputBuffer *buffer);
 
+/**
+ * Creates a new file or updates the timestamp of an existing file.
+ * 
+ * This function parses the provided InputBuffer to extract the file name
+ * and uses the `open()` system call to create the file if it doesn't exist.
+ * If the file exists, it simply opens and closes it (updating the access/modification time).
+ * 
+ * - If no file name is provided, the function performs no action.
+ * - If the file cannot be created (e.g., due to permission issues), an error message is printed.
+ * 
+ * @param buffer Pointer to the InputBuffer containing the user input (e.g., "touch <file>").
+ */
+void touch_file(InputBuffer *buffer);
 #endif

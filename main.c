@@ -24,6 +24,9 @@ int main(int argc, char **argv) {
         case MAKE_DIR_STATEMENT:
             make_dir(buffer);
             break;
+        case TOUCH_FILE_STATEMENT:
+            touch_file(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             is_running = false;

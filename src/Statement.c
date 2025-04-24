@@ -21,6 +21,8 @@ StatementType execute_statement(InputBuffer *buffer) {
         return EXIT_STATEMENT;
     } else if(strcmp(command, "mkdir") == 0) {
         return MAKE_DIR_STATEMENT;
+    } else if(strcmp(command, "touch") == 0) {
+        return TOUCH_FILE_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
     }
