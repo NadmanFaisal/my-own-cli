@@ -16,13 +16,18 @@ int main(int argc, char **argv) {
         switch (execute_statement(buffer)) {
         case LIST_STATEMENT:
             list_dir(buffer);
-            is_running = false;
-            exit(EXIT_SUCCESS);
+            break;
+        case CHANGE_DIR_STATEMENT:
+            change_dir(buffer);
             break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             is_running = false;
             exit(EXIT_FAILURE);
+        case EXIT_STATEMENT:
+            is_running = false;
+            exit(EXIT_SUCCESS);
+            break;
         default:
             break;
         }

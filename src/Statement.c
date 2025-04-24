@@ -15,6 +15,10 @@ StatementType execute_statement(InputBuffer *buffer) {
 
     if (strcmp(command, "ls") == 0) {
         return LIST_STATEMENT;
+    } else if (strcmp(command, "cd") == 0) {
+        return CHANGE_DIR_STATEMENT;
+    } else if (strcmp(command, "exit") == 0) {
+        return EXIT_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
     }
