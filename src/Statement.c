@@ -23,6 +23,8 @@ StatementType execute_statement(InputBuffer *buffer) {
         return MAKE_DIR_STATEMENT;
     } else if(strcmp(command, "touch") == 0) {
         return TOUCH_FILE_STATEMENT;
+    } else if(strcmp(command, "rm") == 0) {
+        return DELETE_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
     }

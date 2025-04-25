@@ -27,6 +27,9 @@ int main(int argc, char **argv) {
         case TOUCH_FILE_STATEMENT:
             touch_file(buffer);
             break;
+        case DELETE_STATEMENT:
+            remove_file_dir(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             is_running = false;
