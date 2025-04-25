@@ -18,3 +18,7 @@ jobs:
       run: docker build -t test/helloworld:latest .
     - name: Run the docker image with exit command
       run: echo "exit" | docker run --rm -i test/helloworld:latest
+    - name: Upload docker to docker registry
+      run: cat ~/my_password.txt | docker login --username carbonatedwaterr --password-stdin
+      run: docker tag test/helloworld carbonatedwaterr/my-own-cli:1.0
+      run: docker push carbonatedwaterr/my-own-cli:1/0
