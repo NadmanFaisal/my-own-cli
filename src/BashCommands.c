@@ -36,7 +36,9 @@ void list_dir(InputBuffer *buffer) {
 
     struct dirent *dp;
     while ((dp = readdir(dir)) != NULL) {
-        printf("%s  ", dp->d_name);
+        if (!(strcmp(dp->d_name, ".") == 0) && (!strcmp(dp->d_name, "..") == 0)) {
+            printf("%s  ", dp->d_name);
+        }
     }
     printf("\n");
     closedir(dir);
@@ -101,4 +103,70 @@ void touch_file(InputBuffer *buffer) {
         return;
     }
     close(fd);
+}
+
+int remove_file_dir_path(const char *path) {
+    DIR *dir = opendir(path);
+    int r = -1;
+
+    if (dir) {
+        struct dirent *p;
+        r = 0;
+        while ((p = readdir(dir))) {
+            int r2 = -1;
+            char *buf;
+            size_t len;
+
+            if (!strcmp(p->d_name, ".") || !strcmp(p->d_name, ".."))
+                continue;
+
+            len = strlen(path) + strlen(p->d_name) + 2;
+            buf = malloc(len);
+
+            if (buf) {
+                struct stat statbuf;
+
+                snprintf(buf, len, "%s/%s", path, p->d_name);
+                if (!stat(buf, &statbuf)) {
+                    if (S_ISDIR(statbuf.st_mode))
+                        r2 = remove_file_dir_path(buf);
+                    else
+                        r2 = unlink(buf);
+                }
+                free(buf);
+            }
+            if (r2 != 0)
+                r = r2;
+        }
+        closedir(dir);
+
+        if (rmdir(path) != 0) {
+            perror("Error removing directory");
+            return -1;
+        }
+        printf("Removed directory: %s\n", path);
+    } else {
+        if (remove(path) != 0) {
+            perror("Error removing file or directory");
+            return -1;
+        }
+    }
+
+    return r;
+}
+
+int remove_file_dir(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+
+    char *command = strtok(string, delimiter);
+    char *path = strtok(NULL, delimiter);
+
+    if (path == NULL) {
+        printf("Error: No path provided.\n");
+        return -1;
+    }
+
+    return remove_file_dir_path(path);
 }

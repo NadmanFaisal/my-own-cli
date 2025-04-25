@@ -79,4 +79,29 @@ void make_dir(InputBuffer *buffer);
  * @param buffer Pointer to the InputBuffer containing the user input (e.g., "touch <file>").
  */
 void touch_file(InputBuffer *buffer);
+
+/**
+ * Recursively removes a file or directory at the specified path.
+ * 
+ * - If the path points to a regular file, the file is deleted.
+ * - If the path points to a directory, it recursively removes all files and subdirectories,
+ *   and then deletes the directory itself.
+ * - Prints error messages if any file or directory cannot be removed.
+ * 
+ * @param path A string representing the absolute or relative path to the file or directory.
+ * @return 0 on success, -1 on failure.
+ */
+int remove_file_dir_path(const char *path);
+
+/**
+ * Parses the user input buffer to extract the path for removal and triggers the deletion process.
+ * 
+ * - Extracts the target path from the InputBuffer (expects a command like "rm <path>").
+ * - Calls `remove_file_dir_path()` to recursively delete the specified file or directory.
+ * - Prints an error if no path is provided.
+ * 
+ * @param buffer Pointer to the InputBuffer containing the user input.
+ * @return 0 on success, -1 on failure.
+ */
+int remove_file_dir(InputBuffer *buffer);
 #endif
