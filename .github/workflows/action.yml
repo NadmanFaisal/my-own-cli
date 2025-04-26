@@ -14,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install QEMU for buildx
+      run: docker run --privileged --rm tonistiigi/binfmt --install all
     - name: Build the image for cross-compatibility
       run:  docker buildx build --platform linux/amd64,linux/arm64 -t test/helloworld:latest .
     # - name: Build the docker image
