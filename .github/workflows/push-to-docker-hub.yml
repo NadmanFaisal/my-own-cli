@@ -4,16 +4,11 @@ on:
     workflows: ["build-docker"]
     types:
       - completed
-
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   push-to-docker-hub:
-    if: |
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
-      (github.event_name == 'pull_request')
-
     runs-on: ubuntu-latest
 
     steps:
