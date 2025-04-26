@@ -32,8 +32,7 @@ int main(int argc, char **argv) {
             break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
-            is_running = false;
-            exit(EXIT_FAILURE);
+            break;
         case EXIT_STATEMENT:
             is_running = false;
             exit(EXIT_SUCCESS);
@@ -41,7 +40,6 @@ int main(int argc, char **argv) {
         default:
             break;
         }
-
     }
 
     free_buffer(buffer);
