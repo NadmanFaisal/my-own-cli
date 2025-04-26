@@ -14,8 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the docker image
-      run: docker build -t test/helloworld:latest .
+    - name: Build the image for cross-compatibility
+      run:  docker buildx build --platform linux/amd64,linux/arm64 -t test/helloworld:latest .
+    # - name: Build the docker image
+    #   run: docker build -t test/helloworld:latest .
     - name: Run the docker image with exit command
       run: echo "exit" | docker run --rm -i test/helloworld:latest
     - name: Login to Docker Hub
@@ -27,4 +29,4 @@ jobs:
     - name: Tag the docker for docker hub
       run: docker tag test/helloworld carbonatedwaterr/my-own-cli:1.0
     - name: Push the docker to registry
-      run: docker push carbonatedwaterr/my-own-cli:1.0
+      run: docker push carbonatedwaterr/my-own-cli:latest
