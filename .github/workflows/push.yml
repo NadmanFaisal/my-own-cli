@@ -1,0 +1,22 @@
+name: build-docker
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build the docker image
+      run: docker build -t test/helloworld:latest .
+    
+    - name: Run the docker image with exit command
+      run: echo "exit" | docker run --rm -i test/helloworld:latest
