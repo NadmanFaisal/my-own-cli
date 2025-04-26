@@ -6,7 +6,7 @@ docker build -t test/helloworld:latest .
 
 to run the docker:-
 
-docker run --rm test/helloworld
+docker run --rm -it test/helloworld
 
 To export the docker image:
 
