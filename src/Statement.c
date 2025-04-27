@@ -25,6 +25,8 @@ StatementType execute_statement(InputBuffer *buffer) {
         return TOUCH_FILE_STATEMENT;
     } else if(strcmp(command, "rm") == 0) {
         return DELETE_STATEMENT;
+    } else if(strcmp(command, "cp") == 0) {
+        return COPY_STATEMENT;
     } else if(strcmp(command, "mv") == 0) {
         return RENAME_FILE_STATEMENT;
     } else {

@@ -14,6 +14,7 @@
  * - MAKE_DIR_STATEMENT: Represends the 'mkdir' command used to make a directory. 
  * - RENAME_FILE_STATEMENT: Represents the 'mv' command used to rename a file
  * - TOUCH_FILE_STATEMENT: Represents the 'touch' command used to create a file
+ * - COPY_STATEMENT: Represents the 'cp' command to copy files to the current directory.
  * - EXIT_STATEMENT: Represends the 'exit' command used to exit the bash
  */
 typedef enum {
@@ -23,6 +24,7 @@ typedef enum {
     MAKE_DIR_STATEMENT,
     TOUCH_FILE_STATEMENT,
     RENAME_FILE_STATEMENT,
+    COPY_STATEMENT,
     DELETE_STATEMENT,
     EXIT_STATEMENT
 } StatementType;

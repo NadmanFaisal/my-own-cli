@@ -33,6 +33,9 @@ int main(int argc, char **argv) {
         case RENAME_FILE_STATEMENT:
             rename_file_or_dir(buffer);
             break;
+        case COPY_STATEMENT:
+            copy_to_curr_dir(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             break;
