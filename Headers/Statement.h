@@ -12,6 +12,7 @@
  * - UNRECOGNISED_COMMAND: Represents any command that is not recognized by the parser.
  * - CHANGE_DIR_STATEMENT: Represents the 'cd' command, used to change directory. 
  * - MAKE_DIR_STATEMENT: Represends the 'mkdir' command used to make a directory. 
+ * - RENAME_FILE_STATEMENT: Represents the 'mv' command used to rename a file
  * - TOUCH_FILE_STATEMENT: Represents the 'touch' command used to create a file
  * - EXIT_STATEMENT: Represends the 'exit' command used to exit the bash
  */
@@ -21,6 +22,7 @@ typedef enum {
     CHANGE_DIR_STATEMENT,
     MAKE_DIR_STATEMENT,
     TOUCH_FILE_STATEMENT,
+    RENAME_FILE_STATEMENT,
     DELETE_STATEMENT,
     EXIT_STATEMENT
 } StatementType;

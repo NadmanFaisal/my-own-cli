@@ -170,3 +170,38 @@ int remove_file_dir(InputBuffer *buffer) {
 
     return remove_file_dir_path(path);
 }
+
+int rename_file_or_dir(InputBuffer *buffer) {
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+
+    char *command = strtok(string, delimiter);
+    char *original_name = strtok(NULL, delimiter);
+    char *new_name = strtok(NULL, delimiter);
+
+    if(original_name == NULL) {
+        printf("No Original name provided.\n");
+        return -1;
+    } else if(new_name == NULL) {
+        printf("No new name provided.\n");
+        return -1;
+    }
+
+    if(access(original_name, F_OK) != 0) {
+        printf("File or folder '%s' does not exist.\n", original_name);
+        return -1;
+    }
+
+    if(access(new_name, F_OK) == 0) {
+        printf("File or folder name '%s' already exists.\n", new_name);
+        return -1;
+    }
+
+    if(rename(original_name, new_name) != 0) {
+        printf("Error renaming '%s' file or folder.\n", original_name);
+        return -1;
+    }
+
+    return 0;
+}

@@ -39,3 +39,14 @@ Developers flow:
 - Add the case block for the type of command in main.c
 - Add the method decleration in BashCommand.h
 - Implement the method in BashCommand.c
+
+Pull the docker from docker hub:
+
+docker pull carbonatedwaterr/my-own-cli:latest
+
+Run the docker in the current working directory (For macOS, Linus, and Windows Bash):
+
+docker run --rm -it \
+  --mount type=bind,src="$(pwd)",target="$(pwd)" \
+  -w "$(pwd)" \
+  carbonatedwaterr/my-own-cli:latest
