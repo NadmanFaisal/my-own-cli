@@ -205,3 +205,43 @@ int rename_file_or_dir(InputBuffer *buffer) {
 
     return 0;
 }
+
+int copy_to_curr_dir(InputBuffer *buffer) {
+    FILE *fptr1, *fptr2;
+    
+    char string[MAX_CHARS];
+    strcpy(string, buffer->buffer);
+    const char delimiter[] = " ";
+
+    char *command = strtok(string, delimiter);
+    char *original_name = strtok(NULL, delimiter);
+    char *dst_file_name = strtok(NULL, delimiter);
+    
+    int c;
+
+    fptr1 = fopen(original_name, "r");
+    if (fptr1 == NULL) {
+        printf("Cannot open file %s\n", original_name);
+        return -1;
+    }
+
+    if(access(dst_file_name, F_OK) == 0) {
+        printf("File or folder '%s' already exists.\n", dst_file_name);
+        return -1;
+    }
+
+    fptr2 = fopen(dst_file_name, "w");
+    if (fptr2 == NULL) {
+        printf("Cannot open file %s\n", dst_file_name);
+        fclose(fptr1);
+        return -1;
+    }
+
+    while ((c = fgetc(fptr1)) != EOF) {
+        fputc(c, fptr2);
+    }
+
+    fclose(fptr1);
+    fclose(fptr2);
+    return 0;
+}

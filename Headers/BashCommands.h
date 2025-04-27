@@ -120,4 +120,21 @@ int remove_file_dir(InputBuffer *buffer);
  * @return 0 on success, -1 on failure (e.g., missing arguments, file not found, or rename error).
  */
 int rename_file_or_dir(InputBuffer *buffer);
+
+/**
+ * Copies a file from the source (original name) to the destination (new file name) 
+ * within the current working directory.
+ * 
+ * - Parses the source and destination file names from the InputBuffer.
+ * - Opens the source file for reading and creates the destination file for writing.
+ * - Checks if the destination file already exists to prevent overwriting.
+ * - Copies the content of the source file to the destination file, character by character.
+ * - Closes both files after the operation is complete.
+ * 
+ * @param buffer Pointer to the InputBuffer containing the copy command and arguments.
+ *               Expects the format: "cp <source_file> <destination_file>".
+ * 
+ * @return 0 on success, -1 on failure (e.g., missing arguments, file not found, file already exists, or copy error).
+ */
+int copy_to_curr_dir(InputBuffer *buffer);
 #endif
