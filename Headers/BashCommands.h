@@ -104,4 +104,20 @@ int remove_file_dir_path(const char *path);
  * @return 0 on success, -1 on failure.
  */
 int remove_file_dir(InputBuffer *buffer);
+
+/**
+ * Renames a file or directory based on user input.
+ * 
+ * - Parses the original and new names from the provided InputBuffer.
+ * - Checks if the original file or directory exists.
+ * - Ensures the new name does not already exist to prevent overwriting.
+ * - Uses the `rename()` system call to rename the file or directory.
+ * - Prints appropriate error messages if any operation fails.
+ * 
+ * @param buffer Pointer to the InputBuffer containing the rename command and arguments.
+ *               Expects the format: "rename <original_name> <new_name>".
+ * 
+ * @return 0 on success, -1 on failure (e.g., missing arguments, file not found, or rename error).
+ */
+int rename_file_or_dir(InputBuffer *buffer);
 #endif

@@ -30,6 +30,9 @@ int main(int argc, char **argv) {
         case DELETE_STATEMENT:
             remove_file_dir(buffer);
             break;
+        case RENAME_FILE_STATEMENT:
+            rename_file_or_dir(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             break;
