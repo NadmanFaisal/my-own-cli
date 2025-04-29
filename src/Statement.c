@@ -29,6 +29,8 @@ StatementType execute_statement(InputBuffer *buffer) {
         return COPY_STATEMENT;
     } else if(strcmp(command, "mv") == 0) {
         return RENAME_FILE_STATEMENT;
+    } else if(strcmp(command, "help") == 0) {
+        return HELP_STATEMENT;
     } else {
         return UNRECOGNISED_COMMAND;
     }

@@ -1,6 +1,8 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 #include "Headers/InputBuffer.h"
 #include "Headers/Statement.h"
@@ -9,9 +11,11 @@
 int main(int argc, char **argv) {
     InputBuffer *buffer = create_buffer();
     bool is_running = true;
-    printf("Write an input: \n");
 
     while(is_running) {
+        char *current_working_dir = get_current_dir_name();
+        printf("%s > ", current_working_dir);
+        fflush(stdout);
         read_buffer(buffer);
         
         switch (execute_statement(buffer)) {
@@ -36,6 +40,9 @@ int main(int argc, char **argv) {
         case COPY_STATEMENT:
             copy_to_curr_dir(buffer);
             break;
+        case HELP_STATEMENT:
+            print_help(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             break;
@@ -46,6 +53,7 @@ int main(int argc, char **argv) {
         default:
             break;
         }
+        free(current_working_dir);                // Free mem allocated for get_current_dir_name method
     }
 
     free_buffer(buffer);

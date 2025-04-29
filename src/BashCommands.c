@@ -67,8 +67,8 @@ void change_dir(InputBuffer *buffer) {
     }
 
     chdir(path);
-    char s[100];
-    printf("%s\n", getcwd(s, 100)); 
+    // char s[100];
+    // printf("%s\n", getcwd(s, 100)); 
     closedir(dir);
     free(status);
 }
@@ -244,4 +244,38 @@ int copy_to_curr_dir(InputBuffer *buffer) {
     fclose(fptr1);
     fclose(fptr2);
     return 0;
+}
+
+void print_help() {
+    printf("\nAvailable Commands:\n");
+    printf("--------------------------------------------------\n");
+    printf("ls [path]\n");
+    printf("    List the contents of the current directory.\n");
+    printf("    Optionally specify a path to list that directory's contents.\n\n");
+
+    printf("cd <path>\n");
+    printf("    Change the current working directory to the specified path.\n\n");
+
+    printf("mkdir <folder_name>\n");
+    printf("    Create a new directory with the specified name.\n\n");
+
+    printf("touch <file_name>\n");
+    printf("    Create a new empty file, or update the timestamp of an existing file.\n\n");
+
+    printf("rm <path>\n");
+    printf("    Remove a file or directory.\n");
+    printf("    If a directory is specified, it will be removed recursively.\n\n");
+
+    printf("cp <source_file> <destination_file>\n");
+    printf("    Copy a file to a new file in the current directory.\n\n");
+
+    printf("mv <original_name> <new_name>\n");
+    printf("    Rename a file or directory.\n\n");
+
+    printf("help\n");
+    printf("    Display this help message.\n\n");
+
+    printf("exit\n");
+    printf("    Exit the CLI application.\n");
+    printf("--------------------------------------------------\n\n");
 }

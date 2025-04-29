@@ -137,4 +137,9 @@ int rename_file_or_dir(InputBuffer *buffer);
  * @return 0 on success, -1 on failure (e.g., missing arguments, file not found, file already exists, or copy error).
  */
 int copy_to_curr_dir(InputBuffer *buffer);
+
+/**
+ * Prints all the commands that are available for the program to execute. 
+ */
+void print_help();
 #endif
