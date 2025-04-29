@@ -1,6 +1,6 @@
 # my-own-cli
 
-A simple command-line interface built entirely on C programming language, supporting basic UNIX-life (base-like) file system operations. This program supports commands like `ls`, `cd`, `mkdir`, `touch`, `rm`, `cp`, and `mv`.
+A simple command-line interface built entirely in C programming language, supporting basic UNIX-like (bash-like) file system operations. This program supports commands like `ls`, `cd`, `mkdir`, `touch`, `rm`, `cp`, and `mv`.
 
 # List of commands supported
 
