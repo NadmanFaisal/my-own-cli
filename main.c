@@ -1,6 +1,8 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 #include "Headers/InputBuffer.h"
 #include "Headers/Statement.h"
@@ -12,6 +14,8 @@ int main(int argc, char **argv) {
     printf("Write an input: \n");
 
     while(is_running) {
+        char *current_working_dir = get_current_dir_name();
+        printf("%s > ", current_working_dir);
         read_buffer(buffer);
         
         switch (execute_statement(buffer)) {
@@ -49,6 +53,7 @@ int main(int argc, char **argv) {
         default:
             break;
         }
+        free(current_working_dir);                // Free mem allocated for get_current_dir_name method
     }
 
     free_buffer(buffer);

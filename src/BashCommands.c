@@ -67,8 +67,8 @@ void change_dir(InputBuffer *buffer) {
     }
 
     chdir(path);
-    char s[100];
-    printf("%s\n", getcwd(s, 100)); 
+    // char s[100];
+    // printf("%s\n", getcwd(s, 100)); 
     closedir(dir);
     free(status);
 }
