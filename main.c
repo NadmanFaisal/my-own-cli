@@ -11,11 +11,11 @@
 int main(int argc, char **argv) {
     InputBuffer *buffer = create_buffer();
     bool is_running = true;
-    printf("Write an input: \n");
 
     while(is_running) {
         char *current_working_dir = get_current_dir_name();
         printf("%s > ", current_working_dir);
+        fflush(stdout);
         read_buffer(buffer);
         
         switch (execute_statement(buffer)) {

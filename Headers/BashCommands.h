@@ -138,5 +138,8 @@ int rename_file_or_dir(InputBuffer *buffer);
  */
 int copy_to_curr_dir(InputBuffer *buffer);
 
+/**
+ * Prints all the commands that are available for the program to execute. 
+ */
 void print_help();
 #endif
