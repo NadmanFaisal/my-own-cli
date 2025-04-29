@@ -15,6 +15,7 @@
  * - RENAME_FILE_STATEMENT: Represents the 'mv' command used to rename a file
  * - TOUCH_FILE_STATEMENT: Represents the 'touch' command used to create a file
  * - COPY_STATEMENT: Represents the 'cp' command to copy files to the current directory.
+ * - HELP_STATEMENT: Represents the 'help' command to view the commands available to the user. 
  * - EXIT_STATEMENT: Represends the 'exit' command used to exit the bash
  */
 typedef enum {
@@ -25,6 +26,7 @@ typedef enum {
     TOUCH_FILE_STATEMENT,
     RENAME_FILE_STATEMENT,
     COPY_STATEMENT,
+    HELP_STATEMENT,
     DELETE_STATEMENT,
     EXIT_STATEMENT
 } StatementType;

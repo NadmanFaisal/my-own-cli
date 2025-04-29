@@ -36,6 +36,9 @@ int main(int argc, char **argv) {
         case COPY_STATEMENT:
             copy_to_curr_dir(buffer);
             break;
+        case HELP_STATEMENT:
+            print_help(buffer);
+            break;
         case UNRECOGNISED_COMMAND:
             printf("Unrecognised command.\n");
             break;
