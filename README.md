@@ -1,5 +1,7 @@
 # my-own-cli
 
+[![build-docker](https://github.com/NadmanFaisal/my-own-cli/actions/workflows/push.yml/badge.svg)](https://github.com/NadmanFaisal/my-own-cli/actions/workflows/push.yml) [![push-docker-to-docker-hub](https://github.com/NadmanFaisal/my-own-cli/actions/workflows/push-to-docker-hub.yml/badge.svg?branch=main)](https://github.com/NadmanFaisal/my-own-cli/actions/workflows/push-to-docker-hub.yml)
+
 A simple command-line interface built entirely in C programming language, supporting basic UNIX-like (bash-like) file system operations. This program supports commands like `ls`, `cd`, `mkdir`, `touch`, `rm`, `cp`, and `mv`.
 
 # List of commands supported
