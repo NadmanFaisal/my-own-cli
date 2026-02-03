@@ -31,7 +31,9 @@ void list_dir(InputBuffer *buffer) {
 
     if(*status == PATH_UNRECOGNISED) {
         printf("Error: Path not recognizes or directory '%s' not found.\n", path);
-        exit(EXIT_FAILURE);
+        free(status);
+        return;
+        // exit(EXIT_FAILURE);
     }
 
     struct dirent *dp;
@@ -63,7 +65,9 @@ void change_dir(InputBuffer *buffer) {
 
     if(*status == PATH_UNRECOGNISED) {
         printf("Error: Path not recognizes or directory '%s' not found.\n", path);
-        exit(EXIT_FAILURE);
+        free(status);
+        return;
+        // exit(EXIT_FAILURE);
     }
 
     chdir(path);
